@@ -1,21 +1,21 @@
 const fs = require("fs");
+const path = require("path");
 
 
 class ControllerGenerator {
-    constructor(pathOfController) {
-        this.pathOfController = pathOfController;
-    }
-    getController =(funcName)=>{
-        fs.writeFile(this.pathOfController,controllerData(funcName,"GET"),err => {if(err) throw err});
+    getController = (funcName)=>{
+        console.log(__dirname);
+        fs.appendFile(path.join("controller.js"),
+            controllerData(funcName,"GET"),err => {if(err) throw err});
     };
     postController =(funcName)=> {
-        fs.writeFile(this.pathOfController, controllerData(funcName,"POST"), err => {if (err) throw err});
+        fs.appendFile(path.join(__dirname,"controller.js"), controllerData(funcName,"POST"), err => {if (err) throw err});
     };
     putController =(funcName)=> {
-        fs.writeFile(this.pathOfController, controllerData(funcName,"PUT"), err => {if (err) throw err});
+        fs.appendFile(path.join(__dirname,"controller.js"), controllerData(funcName,"PUT"), err => {if (err) throw err});
     };
     deleteController =(funcName)=> {
-        fs.writeFile(this.pathOfController, controllerData(funcName,"DELETE"), err => {if (err) throw err});
+        fs.appendFile(path.join(__dirname,"controller.js"), controllerData(funcName,"DELETE"), err => {if (err) throw err});
     };
 }
 const controllerData = (funcName,methodName) =>`

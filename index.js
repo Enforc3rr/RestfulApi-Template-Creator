@@ -5,7 +5,6 @@ const {getMapping,
     putMapping,
     deleteMapping,
     routerJsGenerator,} = require("./RouterCodeGenerator/RouterGenerator");
-const ControllerGenerator = require("./ControllerCodeGenerator/ControllerGenerator");
 
 const readLine = require("readline").createInterface({
     input : process.stdin ,
@@ -22,7 +21,6 @@ readLine.question("Enter Project Name = ", projectName=>{
         fs.writeFile(path.join(__dirname+`/${projectName}/router`,"router.js"),"",err1 => {if(err1) throw err1});
 
         fs.mkdir(path.join(__dirname+`/${projectName}`,"/controller"),err1 => {if(err1) throw err1});
-        const controllerGen = new ControllerGenerator(__dirname+`/${projectName}/controller`);
 
         routerJsGenerator(projectName,__dirname+`/${projectName}/router`);
 
