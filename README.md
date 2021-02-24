@@ -6,4 +6,4 @@ This Script Aims To Provide A CLI Which Will Create A REST API's Basic Structure
 
 
 
-[After Completion of Application Just Enter cd projectname and npm start to start your Server]
+[After Completion of Application Just "Enter cd projectname" and "npm start" to start your Server]
