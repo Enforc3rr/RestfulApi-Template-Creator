@@ -2,7 +2,7 @@ const fs = require("fs");
 const path = require("path");
 
 const databaseConfig = (databaseConfigPath)=>{
-    fs.writeFile(path.join(databaseConfigPath,"/databaseConfig"),databaseData,err => {if(err) throw err});
+    fs.appendFile(path.join(databaseConfigPath,"databaseConfig.js"),databaseData,err => {if(err) throw err});
 }
 
 const databaseData = `

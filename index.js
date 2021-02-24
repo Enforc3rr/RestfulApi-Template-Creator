@@ -28,7 +28,7 @@ readLine.question("Enter Project Name = ", projectName=>{
 
         fs.mkdir(path.join(__dirname+`/${projectName}`,"/database"),err1 => {if(err1) throw err1});
         fs.writeFile(path.join(__dirname+`/${projectName}`,".env"),"",err1=>{if(err1) throw  err1});
-        DatabaseCodeGenerator();
+        DatabaseCodeGenerator(__dirname+`/${projectName}/database`);
 
         fs.appendFile(path.join(__dirname,projectName,"package.json"),
             packageJsonContent(projectName),err1 =>{if(err1) throw err1});
@@ -42,7 +42,9 @@ readLine.question("Enter Project Name = ", projectName=>{
         choice(routerPath,controllerPath);
     });
 });
-console.log(`
+
+const choice = (routerPath,controllerPath) => {
+    console.log(`
 Press -
 1 To Add GET Method
 2 To Add POST Method
@@ -50,7 +52,6 @@ Press -
 4 To Add DELETE Method
 5 To Exit out Of Program
 `);
-const choice = (routerPath,controllerPath) => {
     console.log("Enter y for yes & n for No");
     readLine.question("Do You Want A GET Method?", choice => {
         choice = Number(choice);
@@ -65,21 +66,21 @@ const choice = (routerPath,controllerPath) => {
             case 2:
             {
                 readLine.question("Enter Name Of Post Mapping Function ", funcName => {
-                    postMapping(funcName,routerPath);
+                    postMapping(funcName,routerPath,controllerPath);
                 });
                 break;
             }
             case 3:
             {
                 readLine.question("Enter Name Of Put Mapping Function ", funcName => {
-                    putMapping(funcName,routerPath);
+                    putMapping(funcName,routerPath,controllerPath);
                 });
                 break;
             }
             case 4:
             {
                 readLine.question("Enter Name Of Delete Mapping Function ", funcName => {
-                    deleteMapping(funcName,routerPath);
+                    deleteMapping(funcName,routerPath,controllerPath);
                 });
                 break;
             }
