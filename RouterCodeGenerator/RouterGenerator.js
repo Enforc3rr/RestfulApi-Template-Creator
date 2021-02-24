@@ -7,28 +7,28 @@ exports.routerJsGenerator = (funcName,folderName) => {
     fs.writeFile(path.join(folderName,"router.js"),routerData(funcName,folderName),
         err => {if(err) throw err});
 };
-exports.getMapping = (funcName,folderName)=>{
+exports.getMapping = (funcName,folderName,controllerPath)=>{
     fs.appendFile(path.join(folderName,"router.js"),getMappingData(funcName),
         err => {if(err) throw err});
-    controlGen.getController(funcName);
+    controlGen.getController(funcName,controllerPath);
     console.log(`GET Mapping Method With Function ${funcName} Created`);
 };
-exports.postMapping = (funcName,folderName)=>{
+exports.postMapping = (funcName,folderName,controllerPath)=>{
     fs.appendFile(path.join(folderName,"router.js"),postMappingData(funcName),
         err => {if(err) throw err});
-    controlGen.postController(funcName);
+    controlGen.postController(funcName,controllerPath);
     console.log(`POST Mapping Method With Function ${funcName} Created`);
 };
-exports.putMapping = (funcName,folderName)=>{
+exports.putMapping = (funcName,folderName,controllerPath)=>{
     fs.appendFile(path.join(folderName,"router.js"),putMappingData(funcName),
         err => {if(err) throw err});
-    controlGen.putController(funcName);
+    controlGen.putController(funcName,controllerPath);
     console.log(`PUT Mapping Method With Function ${funcName} Created`);
 };
-exports.deleteMapping = (funcName,folderName)=>{
+exports.deleteMapping = (funcName,folderName,controllerPath)=>{
     fs.appendFile(path.join(folderName,"router.js"),deleteMappingData(funcName),
         err => {if(err) throw err});
-    controlGen.deleteController(funcName);
+    controlGen.deleteController(funcName,controllerPath);
     console.log(`DELETE Mapping Method With Function ${funcName} Created`);
 };
 const routerData =(funName,folderName) => `

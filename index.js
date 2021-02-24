@@ -31,19 +31,21 @@ readLine.question("Enter Project Name = ", projectName=>{
         console.log(`Project ${projectName} created`);
 
         const routerPath = __dirname+`/${projectName}/router`;
+        const controllerPath = __dirname+`/${projectName}/controller`;
 
-        choice(routerPath);
+
+        choice(routerPath,controllerPath);
     });
 });
 
-const choice = (routerPath) => {
+const choice = (routerPath,controllerPath) => {
     readLine.question("Enter Your Choice\n", choice => {
         choice = Number(choice);
         switch (choice) {
             case 1:
             {
                 readLine.question("Enter Name Of Get Mapping Function ", funcName => {
-                    getMapping(funcName,routerPath);
+                    getMapping(funcName,routerPath,controllerPath);
                 })
                 break;
             }
@@ -92,7 +94,7 @@ const packageJsonContent = projName  => `
   "author": "",
   "license": "ISC",
     "dependencies": {
-    "express": "^4.17.1",
+    "express": "^4.17.1"
   }
 }
 `

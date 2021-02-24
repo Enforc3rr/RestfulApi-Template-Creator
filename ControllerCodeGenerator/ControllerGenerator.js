@@ -3,19 +3,18 @@ const path = require("path");
 
 
 class ControllerGenerator {
-    getController = (funcName)=>{
-        console.log(__dirname);
-        fs.appendFile(path.join("controller.js"),
+    getController = (funcName,controllerPath)=>{
+        fs.appendFile(path.join(controllerPath,"controller.js"),
             controllerData(funcName,"GET"),err => {if(err) throw err});
     };
-    postController =(funcName)=> {
-        fs.appendFile(path.join(__dirname,"controller.js"), controllerData(funcName,"POST"), err => {if (err) throw err});
+    postController =(funcName,controllerPath)=> {
+        fs.appendFile(path.join(controllerPath,"controller.js"), controllerData(funcName,"POST"), err => {if (err) throw err});
     };
-    putController =(funcName)=> {
-        fs.appendFile(path.join(__dirname,"controller.js"), controllerData(funcName,"PUT"), err => {if (err) throw err});
+    putController =(funcName,controllerPath)=> {
+        fs.appendFile(path.join(controllerPath,"controller.js"), controllerData(funcName,"PUT"), err => {if (err) throw err});
     };
-    deleteController =(funcName)=> {
-        fs.appendFile(path.join(__dirname,"controller.js"), controllerData(funcName,"DELETE"), err => {if (err) throw err});
+    deleteController =(funcName,controllerPath)=> {
+        fs.appendFile(path.join(controllerPath,"controller.js"), controllerData(funcName,"DELETE"), err => {if (err) throw err});
     };
 }
 const controllerData = (funcName,methodName) =>`
