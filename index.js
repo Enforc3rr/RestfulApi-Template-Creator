@@ -16,6 +16,8 @@ readLine.question("Enter Project Name = ", projectName=>{
 
         if(err) console.log(`Some Error Occurred While Creating Project(${projectName})`);
 
+        fs.writeFile(path.join(__dirname+`/${projectName}`,"index.js"),"",err1 =>{if(err1) throw err1});
+
         fs.mkdir(path.join(__dirname+`/${projectName}`,"/router"),err1 => {if(err1) throw err1});
 
         fs.writeFile(path.join(__dirname+`/${projectName}/router`,"router.js"),"",err1 => {if(err1) throw err1});
@@ -39,7 +41,8 @@ readLine.question("Enter Project Name = ", projectName=>{
 });
 
 const choice = (routerPath,controllerPath) => {
-    readLine.question("Enter Your Choice\n", choice => {
+    console.log("Enter y for yes & n for No");
+    readLine.question("Do You Want A GET Method?", choice => {
         choice = Number(choice);
         switch (choice) {
             case 1:
@@ -94,7 +97,20 @@ const packageJsonContent = projName  => `
   "author": "",
   "license": "ISC",
     "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "morgan":"1.10.0"
   }
 }
-`
+`;
+
+const indexJsData = `
+const Morgan = require("morgan");
+const Express = require("express");
+const router = require("./router/router.js);
+const app = new Express();
+
+app.use(morgan);
+app.use(router);
+const PORT = process.env.PORT || 8080;
+app.listen(PORT , ()=> console.log("server started at PORT");
+`;
